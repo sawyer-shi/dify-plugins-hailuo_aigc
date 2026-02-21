@@ -1,0 +1,26 @@
+identity:
+  name: "video_query"
+  author: "sawyer-shi"
+  label:
+    en_US: "Hailuo Video Query"
+    zh_Hans: "海螺-视频状态查询"
+description:
+  human:
+    en_US: "Query status of a single video generation task"
+    zh_Hans: "查询单个视频生成任务状态"
+  llm: "Query status of a single video generation task"
+parameters:
+  - name: task_id
+    type: string
+    required: true
+    label:
+      en_US: Task ID
+      zh_Hans: 任务ID
+    human_description:
+      en_US: "Video generation task ID"
+      zh_Hans: "视频生成任务ID"
+    llm_description: "Video generation task ID"
+    form: llm
+extra:
+  python:
+    source: tools/video_query.py

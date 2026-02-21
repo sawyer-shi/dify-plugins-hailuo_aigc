@@ -1,0 +1,151 @@
+identity:
+  name: "images_2_video"
+  author: "sawyer-shi"
+  label:
+    en_US: "Hailuo First-Last Frame Video"
+    zh_Hans: "海螺-首尾帧生成视频"
+description:
+  human:
+    en_US: "Create a video generation task from first and last frame images"
+    zh_Hans: "使用首尾帧图片创建视频生成任务"
+  llm: "Create a video generation task from first and last frame images"
+parameters:
+  - name: first_frame_image
+    type: file
+    required: true
+    label:
+      en_US: First Frame Image
+      zh_Hans: 首帧图片
+    human_description:
+      en_US: "First frame image"
+      zh_Hans: "首帧图片"
+    llm_description: "First frame image"
+    form: llm
+  - name: last_frame_image
+    type: file
+    required: true
+    label:
+      en_US: Last Frame Image
+      zh_Hans: 尾帧图片
+    human_description:
+      en_US: "Last frame image"
+      zh_Hans: "尾帧图片"
+    llm_description: "Last frame image"
+    form: llm
+  - name: prompt
+    type: string
+    required: false
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: "Optional text description of the video"
+      zh_Hans: "可选的视频文本描述"
+    llm_description: "Optional text description of the video"
+    form: llm
+  - name: model
+    type: select
+    required: false
+    label:
+      en_US: Model
+      zh_Hans: 模型
+    human_description:
+      en_US: "MiniMax video model"
+      zh_Hans: "MiniMax视频模型"
+    llm_description: "MiniMax video model"
+    form: form
+    default: "MiniMax-Hailuo-02"
+    options:
+      - value: "MiniMax-Hailuo-02"
+        label:
+          en_US: "MiniMax-Hailuo-02"
+          zh_Hans: "MiniMax-Hailuo-02"
+  - name: duration
+    type: number
+    required: false
+    label:
+      en_US: Duration (seconds)
+      zh_Hans: 时长(秒)
+    human_description:
+      en_US: "Video duration in seconds"
+      zh_Hans: "视频时长(秒)"
+    llm_description: "Video duration in seconds"
+    form: form
+    default: 6
+  - name: resolution
+    type: select
+    required: false
+    label:
+      en_US: Resolution
+      zh_Hans: 分辨率
+    human_description:
+      en_US: "Video resolution"
+      zh_Hans: "视频分辨率"
+    llm_description: "Video resolution"
+    form: form
+    default: "768P"
+    options:
+      - value: "768P"
+        label:
+          en_US: "768P"
+          zh_Hans: "768P"
+      - value: "1080P"
+        label:
+          en_US: "1080P"
+          zh_Hans: "1080P"
+  - name: prompt_optimizer
+    type: select
+    required: false
+    label:
+      en_US: Prompt Optimizer
+      zh_Hans: 提示词优化
+    human_description:
+      en_US: "Enable prompt optimizer"
+      zh_Hans: "是否开启提示词自动优化"
+    llm_description: "Enable prompt optimizer"
+    form: form
+    default: "true"
+    options:
+      - value: "true"
+        label:
+          en_US: "Enabled"
+          zh_Hans: "启用"
+      - value: "false"
+        label:
+          en_US: "Disabled"
+          zh_Hans: "禁用"
+  - name: callback_url
+    type: string
+    required: false
+    label:
+      en_US: Callback URL
+      zh_Hans: 回调地址
+    human_description:
+      en_US: "Callback URL for task status updates"
+      zh_Hans: "用于任务状态更新的回调地址"
+    llm_description: "Callback URL for task status updates"
+    form: form
+  - name: aigc_watermark
+    type: select
+    required: false
+    label:
+      en_US: Watermark
+      zh_Hans: 水印
+    human_description:
+      en_US: "Add AIGC watermark"
+      zh_Hans: "是否添加水印"
+    llm_description: "Add AIGC watermark"
+    form: form
+    default: "false"
+    options:
+      - value: "true"
+        label:
+          en_US: "Enabled"
+          zh_Hans: "启用"
+      - value: "false"
+        label:
+          en_US: "Disabled"
+          zh_Hans: "禁用"
+extra:
+  python:
+    source: tools/images_2_video.py

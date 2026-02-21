@@ -1,0 +1,37 @@
+credentials_for_provider:
+  api_key:
+    help:
+      en_US: Get your MiniMax API key and ensure required models are enabled.
+      zh_Hans: 从MiniMax平台获取API Key，并确保已开通相关模型。
+    label:
+      en_US: MiniMax API Key
+      zh_Hans: MiniMax API Key
+    placeholder:
+      en_US: Please input your MiniMax API Key
+      zh_Hans: 请输入您的MiniMax API Key
+    required: true
+    type: secret-input
+    url: https://platform.minimaxi.com/user-center/basic-information/interface-key
+
+identity:
+  author: "sawyer-shi"
+  name: "hailuo_aigc"
+  label:
+    en_US: "Hailuo AIGC"
+    zh_Hans: "海螺AIGC"
+  description:
+    en_US: "Hailuo AIGC: Supports full pipeline operations for image and video generation, editing, etc., powered by the latest MiniMax models (MiniMax-Hailuo-2.3, MiniMax-Hailuo-2.3-fast, MiniMax-Hailuo-02, T2V-01-Director, and image-01)."
+    zh_Hans: "海螺AIGC：支持全套图片+视频的生成、编辑等操作，使用最新的MiniMax模型(MiniMax-Hailuo-2.3、MiniMax-Hailuo-2.3-fast以及MiniMax-Hailuo-02、T2V-01-Director 和 image-01)。"
+  icon: "icon.png"
+tools:
+  - tools/text_2_image.yaml
+  - tools/image_2_image.yaml
+  - tools/text_2_video.yaml
+  - tools/image_2_video.yaml
+  - tools/images_2_video.yaml
+  - tools/subject_reference_2_video.yaml
+  - tools/video_query.yaml
+  - tools/video_download.yaml
+extra:
+  python:
+    source: provider/hailuo_aigc.py

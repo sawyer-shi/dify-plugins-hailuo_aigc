@@ -1,0 +1,107 @@
+identity:
+  name: "subject_reference_2_video"
+  author: "sawyer-shi"
+  label:
+    en_US: "Hailuo Subject Reference Video"
+    zh_Hans: "海螺-主体参考视频"
+description:
+  human:
+    en_US: "Create a video generation task with subject reference"
+    zh_Hans: "使用主体参考创建视频生成任务"
+  llm: "Create a video generation task with subject reference"
+parameters:
+  - name: subject_image
+    type: file
+    required: true
+    label:
+      en_US: Subject Image
+      zh_Hans: 主体参考图
+    human_description:
+      en_US: "Subject reference image (jpeg/png/webp; <=20MB)"
+      zh_Hans: "主体参考图片（jpeg/png/webp；<=20MB）"
+    llm_description: "Subject reference image"
+    form: llm
+  - name: prompt
+    type: string
+    required: false
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: "Optional text description of the video"
+      zh_Hans: "可选的视频文本描述"
+    llm_description: "Optional text description of the video"
+    form: llm
+  - name: model
+    type: select
+    required: false
+    label:
+      en_US: Model
+      zh_Hans: 模型
+    human_description:
+      en_US: "MiniMax video model"
+      zh_Hans: "MiniMax视频模型"
+    llm_description: "MiniMax video model"
+    form: form
+    default: "S2V-01"
+    options:
+      - value: "S2V-01"
+        label:
+          en_US: "S2V-01"
+          zh_Hans: "S2V-01"
+  - name: prompt_optimizer
+    type: select
+    required: false
+    label:
+      en_US: Prompt Optimizer
+      zh_Hans: 提示词优化
+    human_description:
+      en_US: "Enable prompt optimizer"
+      zh_Hans: "是否开启提示词自动优化"
+    llm_description: "Enable prompt optimizer"
+    form: form
+    default: "true"
+    options:
+      - value: "true"
+        label:
+          en_US: "Enabled"
+          zh_Hans: "启用"
+      - value: "false"
+        label:
+          en_US: "Disabled"
+          zh_Hans: "禁用"
+  - name: callback_url
+    type: string
+    required: false
+    label:
+      en_US: Callback URL
+      zh_Hans: 回调地址
+    human_description:
+      en_US: "Callback URL for task status updates"
+      zh_Hans: "用于任务状态更新的回调地址"
+    llm_description: "Callback URL for task status updates"
+    form: form
+  - name: aigc_watermark
+    type: select
+    required: false
+    label:
+      en_US: Watermark
+      zh_Hans: 水印
+    human_description:
+      en_US: "Add AIGC watermark"
+      zh_Hans: "是否添加水印"
+    llm_description: "Add AIGC watermark"
+    form: form
+    default: "false"
+    options:
+      - value: "true"
+        label:
+          en_US: "Enabled"
+          zh_Hans: "启用"
+      - value: "false"
+        label:
+          en_US: "Disabled"
+          zh_Hans: "禁用"
+extra:
+  python:
+    source: tools/subject_reference_2_video.py

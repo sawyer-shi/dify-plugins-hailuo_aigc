@@ -1,0 +1,213 @@
+identity:
+  name: "image_2_image"
+  author: "sawyer-shi"
+  label:
+    en_US: "Hailuo Image to Image"
+    zh_Hans: "海螺-图生图"
+description:
+  human:
+    en_US: "Generate images from text and subject reference using MiniMax Hailuo models"
+    zh_Hans: "使用MiniMax海螺模型根据文本和主体参考生成图像"
+  llm: "Generate images from text and subject reference using MiniMax Hailuo models"
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: "Text description of the image you want to generate"
+      zh_Hans: "您想要生成的图像的文本描述"
+    llm_description: "Text description of the image to generate"
+    form: llm
+  - name: subject_image
+    type: file
+    required: true
+    label:
+      en_US: Subject Image
+      zh_Hans: 主体参考图
+    human_description:
+      en_US: "Subject reference image file (jpeg/png/webp; <=10MB)"
+      zh_Hans: "主体参考图片文件（jpeg/png/webp；<=10MB）"
+    llm_description: "Subject reference image file"
+    form: llm
+  - name: model
+    type: select
+    required: false
+    label:
+      en_US: Model
+      zh_Hans: 模型
+    human_description:
+      en_US: "MiniMax image generation model"
+      zh_Hans: "MiniMax图像生成模型"
+    llm_description: "MiniMax image generation model"
+    form: form
+    default: "image-01"
+    options:
+      - value: "image-01"
+        label:
+          en_US: "image-01"
+          zh_Hans: "image-01"
+      - value: "image-01-live"
+        label:
+          en_US: "image-01-live"
+          zh_Hans: "image-01-live"
+  - name: aspect_ratio
+    type: select
+    required: false
+    label:
+      en_US: Aspect Ratio
+      zh_Hans: 宽高比
+    human_description:
+      en_US: "Aspect ratio for generated image"
+      zh_Hans: "生成图像的宽高比"
+    llm_description: "Aspect ratio for generated image"
+    form: form
+    default: "1:1"
+    options:
+      - value: "1:1"
+        label:
+          en_US: "1:1"
+          zh_Hans: "1:1"
+      - value: "16:9"
+        label:
+          en_US: "16:9"
+          zh_Hans: "16:9"
+      - value: "4:3"
+        label:
+          en_US: "4:3"
+          zh_Hans: "4:3"
+      - value: "3:2"
+        label:
+          en_US: "3:2"
+          zh_Hans: "3:2"
+      - value: "2:3"
+        label:
+          en_US: "2:3"
+          zh_Hans: "2:3"
+      - value: "3:4"
+        label:
+          en_US: "3:4"
+          zh_Hans: "3:4"
+      - value: "9:16"
+        label:
+          en_US: "9:16"
+          zh_Hans: "9:16"
+      - value: "21:9"
+        label:
+          en_US: "21:9"
+          zh_Hans: "21:9"
+  - name: width
+    type: number
+    required: false
+    label:
+      en_US: Width
+      zh_Hans: 宽度
+    human_description:
+      en_US: "Image width in pixels (image-01 only, with height)"
+      zh_Hans: "图片宽度像素（仅image-01，需与高度同时设置）"
+    llm_description: "Image width in pixels"
+    form: form
+  - name: height
+    type: number
+    required: false
+    label:
+      en_US: Height
+      zh_Hans: 高度
+    human_description:
+      en_US: "Image height in pixels (image-01 only, with width)"
+      zh_Hans: "图片高度像素（仅image-01，需与宽度同时设置）"
+    llm_description: "Image height in pixels"
+    form: form
+  - name: response_format
+    type: select
+    required: false
+    label:
+      en_US: Response Format
+      zh_Hans: 返回格式
+    human_description:
+      en_US: "Return URLs or Base64"
+      zh_Hans: "返回URL或Base64"
+    llm_description: "Return URLs or Base64"
+    form: form
+    default: "url"
+    options:
+      - value: "url"
+        label:
+          en_US: "url"
+          zh_Hans: "url"
+      - value: "base64"
+        label:
+          en_US: "base64"
+          zh_Hans: "base64"
+  - name: n
+    type: number
+    required: false
+    label:
+      en_US: Count
+      zh_Hans: 数量
+    human_description:
+      en_US: "Number of images to generate (1-9)"
+      zh_Hans: "单次生成图片数量（1-9）"
+    llm_description: "Number of images to generate (1-9)"
+    form: form
+    default: 1
+    min: 1
+    max: 9
+  - name: seed
+    type: number
+    required: false
+    label:
+      en_US: Seed
+      zh_Hans: 种子
+    human_description:
+      en_US: "Random seed for reproducible results"
+      zh_Hans: "随机种子，用于复现结果"
+    llm_description: "Random seed"
+    form: form
+  - name: prompt_optimizer
+    type: select
+    required: false
+    label:
+      en_US: Prompt Optimizer
+      zh_Hans: 提示词优化
+    human_description:
+      en_US: "Enable prompt optimizer"
+      zh_Hans: "是否开启提示词自动优化"
+    llm_description: "Enable prompt optimizer"
+    form: form
+    default: "false"
+    options:
+      - value: "true"
+        label:
+          en_US: "Enabled"
+          zh_Hans: "启用"
+      - value: "false"
+        label:
+          en_US: "Disabled"
+          zh_Hans: "禁用"
+  - name: aigc_watermark
+    type: select
+    required: false
+    label:
+      en_US: Watermark
+      zh_Hans: 水印
+    human_description:
+      en_US: "Add AIGC watermark"
+      zh_Hans: "是否添加水印"
+    llm_description: "Add AIGC watermark"
+    form: form
+    default: "false"
+    options:
+      - value: "true"
+        label:
+          en_US: "Enabled"
+          zh_Hans: "启用"
+      - value: "false"
+        label:
+          en_US: "Disabled"
+          zh_Hans: "禁用"
+extra:
+  python:
+    source: tools/image_2_image.py

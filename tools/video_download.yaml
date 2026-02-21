@@ -1,0 +1,26 @@
+identity:
+  name: "video_download"
+  author: "sawyer-shi"
+  label:
+    en_US: "Hailuo Video Download"
+    zh_Hans: "海螺-视频下载"
+description:
+  human:
+    en_US: "Download a generated video file by file ID"
+    zh_Hans: "通过文件ID下载生成的视频"
+  llm: "Download a generated video file by file ID"
+parameters:
+  - name: file_id
+    type: number
+    required: true
+    label:
+      en_US: File ID
+      zh_Hans: 文件ID
+    human_description:
+      en_US: "File ID returned by video query"
+      zh_Hans: "视频查询返回的文件ID"
+    llm_description: "File ID returned by video query"
+    form: llm
+extra:
+  python:
+    source: tools/video_download.py
