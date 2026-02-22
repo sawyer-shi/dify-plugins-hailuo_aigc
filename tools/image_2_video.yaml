@@ -76,9 +76,9 @@ parameters:
       en_US: Duration (seconds)
       zh_Hans: 时长(秒)
     human_description:
-      en_US: "Video duration in seconds"
-      zh_Hans: "视频时长(秒)"
-    llm_description: "Video duration in seconds"
+      en_US: "Video duration in seconds. Model/Resolution: MiniMax-Hailuo-2.3 768P=6 or 10, 1080P=6; MiniMax-Hailuo-2.3-Fast 768P=6 or 10, 1080P=6; MiniMax-Hailuo-02 768P=6 or 10, 1080P=6; Other models 720P=6, 1080P=6."
+      zh_Hans: "视频时长(秒)。模型与分辨率关系：MiniMax-Hailuo-2.3 768P=6或10，1080P=6；MiniMax-Hailuo-2.3-Fast 768P=6或10，1080P=6；MiniMax-Hailuo-02 768P=6或10，1080P=6；其他模型 720P=6，1080P=6。"
+    llm_description: "Video duration in seconds with model/resolution mapping"
     form: form
     default: 6
   - name: resolution
