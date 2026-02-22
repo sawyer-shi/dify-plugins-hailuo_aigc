@@ -106,7 +106,7 @@ parameters:
       zh_Hans: 宽度
     human_description:
       en_US: "Image width in pixels (image-01 only, with height)"
-      zh_Hans: "图片宽度像素（仅image-01，需与高度同时设置）"
+      zh_Hans: "图片宽度像素（仅image-01，需与高度同时设置）【设置了宽高比，这个将被忽略】"
     llm_description: "Image width in pixels"
     form: form
   - name: height
@@ -117,7 +117,7 @@ parameters:
       zh_Hans: 高度
     human_description:
       en_US: "Image height in pixels (image-01 only, with width)"
-      zh_Hans: "图片高度像素（仅image-01，需与宽度同时设置）"
+      zh_Hans: "图片高度像素（仅image-01，需与宽度同时设置）【设置了宽高比，这个将被忽略】"
     llm_description: "Image height in pixels"
     form: form
   - name: response_format
