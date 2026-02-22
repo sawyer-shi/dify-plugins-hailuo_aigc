@@ -19,6 +19,7 @@ A powerful Dify plugin providing comprehensive AI-powered image and video genera
 3. Start generating images and videos with AI
 
 ## Key Features
+<img width="368" height="639" alt="CN" src="https://github.com/user-attachments/assets/d7b4e80e-8760-458f-8e0f-15c7ba685e19" /><img width="366" height="717" alt="EN" src="https://github.com/user-attachments/assets/de184d01-d02f-4904-87b2-800135628ad3" />
 
 - **Multiple Generation Modes**: Text-to-image, image-to-image, text-to-video, image-to-video, first-last frame video, subject reference video
 - **Latest AI Models**: Supports MiniMax-Hailuo-2.3, MiniMax-Hailuo-2.3-Fast, MiniMax-Hailuo-02, T2V-01-Director, I2V-01-Director, I2V-01-live, I2V-01, S2V-01, image-01, image-01-live
