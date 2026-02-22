@@ -3,12 +3,12 @@ identity:
   author: "sawyer-shi"
   label:
     en_US: "Hailuo Subject Reference Video"
-    zh_Hans: "海螺-主体参考视频"
+    zh_Hans: "海螺-主体形象参考视频"
 description:
   human:
-    en_US: "Create a video generation task with subject reference"
-    zh_Hans: "使用主体参考创建视频生成任务"
-  llm: "Create a video generation task with subject reference"
+    en_US: "Create a video generation task with subject image reference"
+    zh_Hans: "使用主体形象参考创建视频生成任务"
+  llm: "Create a video generation task with subject image reference"
 parameters:
   - name: subject_image
     type: file
