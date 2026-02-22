@@ -31,7 +31,6 @@ tools:
   - tools/images_2_video.yaml
   - tools/subject_reference_2_video.yaml
   - tools/video_query.yaml
-  - tools/video_download.yaml
 extra:
   python:
     source: provider/hailuo_aigc.py

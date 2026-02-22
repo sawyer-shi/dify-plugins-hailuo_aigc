@@ -6,9 +6,9 @@ identity:
     zh_Hans: "海螺-视频状态查询"
 description:
   human:
-    en_US: "Query status of a single video generation task"
-    zh_Hans: "查询单个视频生成任务状态"
-  llm: "Query status of a single video generation task"
+    en_US: "Query status of a single video generation task and optionally download the video"
+    zh_Hans: "查询单个视频生成任务状态并可选下载视频"
+  llm: "Query status of a single video generation task and optionally download the video"
 parameters:
   - name: task_id
     type: string
@@ -21,6 +21,27 @@ parameters:
       zh_Hans: "视频生成任务ID"
     llm_description: "Video generation task ID"
     form: llm
+  - name: download_video
+    type: select
+    required: false
+    label:
+      en_US: Download Video
+      zh_Hans: 下载视频
+    human_description:
+      en_US: "Download video file when status is Success"
+      zh_Hans: "状态成功时下载视频文件"
+    llm_description: "Download video file when status is Success"
+    form: form
+    default: "true"
+    options:
+      - value: "true"
+        label:
+          en_US: "Enabled"
+          zh_Hans: "启用"
+      - value: "false"
+        label:
+          en_US: "Disabled"
+          zh_Hans: "禁用"
 extra:
   python:
     source: tools/video_query.py

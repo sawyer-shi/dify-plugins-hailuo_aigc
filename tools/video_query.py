@@ -32,6 +32,8 @@ class VideoQueryTool(Tool):
                 yield self.create_text_message(msg)
                 return
 
+            download_video = tool_parameters.get("download_video", "true") == "true"
+
             api_url = "https://api.minimaxi.com/v1/query/video_generation"
             headers = {
                 "Authorization": f"Bearer {api_key}",
@@ -92,12 +94,65 @@ class VideoQueryTool(Tool):
                     f"📐 分辨率: {video_width}x{video_height}"
                 )
 
+            download_url = None
+            if status == "Success" and file_id:
+                file_api_url = "https://api.minimaxi.com/v1/files/retrieve"
+                file_params = {"file_id": int(file_id)}
+                try:
+                    file_response = requests.get(
+                        file_api_url, headers=headers, params=file_params, timeout=60
+                    )
+                except requests.exceptions.RequestException as e:
+                    yield self.create_text_message(f"❌ 获取下载链接失败: {str(e)}")
+                    file_response = None
+
+                if file_response and file_response.status_code == 200:
+                    try:
+                        file_data = file_response.json()
+                    except json.JSONDecodeError:
+                        file_data = None
+                    if isinstance(file_data, dict):
+                        file_obj = file_data.get("file", {})
+                        download_url = file_obj.get("download_url")
+                        filename = file_obj.get("filename") or f"{file_id}.mp4"
+
+                        if download_url:
+                            yield self.create_text_message(f"🔗 下载链接: {download_url}")
+                            if download_video:
+                                yield self.create_text_message("⬇️ 正在下载视频文件...")
+                                try:
+                                    video_response = requests.get(download_url, timeout=120)
+                                except requests.exceptions.RequestException as e:
+                                    yield self.create_text_message(
+                                        f"❌ 视频下载失败: {str(e)}"
+                                    )
+                                    video_response = None
+
+                                if video_response and video_response.status_code == 200:
+                                    yield self.create_blob_message(
+                                        blob=video_response.content,
+                                        meta={
+                                            "mime_type": "video/mp4",
+                                            "filename": filename,
+                                        },
+                                    )
+                                    yield self.create_text_message("✅ 视频下载完成")
+                                elif video_response is not None:
+                                    yield self.create_text_message(
+                                        f"❌ 视频下载失败，状态码: {video_response.status_code}"
+                                    )
+                    elif file_response is not None:
+                        yield self.create_text_message(
+                            f"❌ 获取下载链接失败，状态码: {file_response.status_code}"
+                        )
+
             result_json = {
                 "task_id": resp_data.get("task_id"),
                 "status": status,
                 "file_id": file_id,
                 "video_width": video_width,
                 "video_height": video_height,
+                "download_url": download_url,
                 "base_resp": resp_data.get("base_resp"),
             }
             yield self.create_json_message(result_json)
